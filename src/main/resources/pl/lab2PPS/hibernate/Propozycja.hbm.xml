@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2020-04-21 13:48:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pl.lab2PPS.hibernate.Propozycja" table="propozycja" catalog="portal_randkowy" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <set name="wiadomoscs" table="wiadomosc" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_propozycji" not-null="true" />
+            </key>
+            <one-to-many class="pl.lab2PPS.hibernate.Wiadomosc" />
+        </set>
+        <set name="zgloszenies" table="zgloszenie" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_propozycji" not-null="true" />
+            </key>
+            <one-to-many class="pl.lab2PPS.hibernate.Zgloszenie" />
+        </set>
+    </class>
+</hibernate-mapping>
