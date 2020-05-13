@@ -22,4 +22,15 @@ public class KategorieController {
     private Kategorie addKategorie(@RequestBody Kategorie kategorie){
         return kategorieRepository.save(kategorie);
     }
+
+    @PutMapping
+    private Kategorie updateKategorie(@RequestBody Kategorie kategorie){
+        return kategorieRepository.save(kategorie);
+    }
+
+    @DeleteMapping
+    private Kategorie deleteKategorie(@RequestBody Kategorie kategorie){
+        kategorieRepository.delete(kategorie);
+        return kategorie;
+    }
 }

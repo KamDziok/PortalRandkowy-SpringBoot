@@ -1,22 +1,27 @@
 package pl.AILab1PPS.PortalRandkowy.zgloszenie;
 
+import lombok.NoArgsConstructor;
 import pl.AILab1PPS.PortalRandkowy.uzytkownik.Uzytkownik;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+
+@NoArgsConstructor
 
 @Entity
 @Table(name = "Zgloszenie")
-public class Zgloszenie {
+public class Zgloszenie implements Serializable {
 
-    @EmbeddedId
-    private ZgloszenieId id;
-
+    @Id
     @ManyToOne
-    private Uzytkownik uzytkownikA;
+    @JoinColumn(name="uzytkownik_zglaszajacy")
+    private Uzytkownik uzytkownikZglaszajacy;
 
+    @Id
     @ManyToOne
-    private Uzytkownik uzytkownikB;
+    @JoinColumn(name="uzytkownik_zglaszany")
+    private Uzytkownik uzytkownikZglaszany;
 
     @Column(name = "tresc")
     private String tresc;
@@ -24,31 +29,25 @@ public class Zgloszenie {
     @Column(name = "data_zgloszenia")
     private Date dataZgloszenia;
 
-    public Zgloszenie() {
+    public Zgloszenie(Uzytkownik uzytkownikZglaszajacy, Uzytkownik uzytkownikZglaszany) {
+        this.uzytkownikZglaszajacy = uzytkownikZglaszajacy;
+        this.uzytkownikZglaszany = uzytkownikZglaszany;
     }
 
-    public ZgloszenieId getId() {
-        return id;
+    public Uzytkownik getUzytkownikZglaszajacy() {
+        return uzytkownikZglaszajacy;
     }
 
-    public void setId(ZgloszenieId id) {
-        this.id = id;
+    public void setUzytkownikZglaszajacy(Uzytkownik uzytkownikZglaszajacy) {
+        this.uzytkownikZglaszajacy = uzytkownikZglaszajacy;
     }
 
-    public Uzytkownik getUzytkownikA() {
-        return uzytkownikA;
+    public Uzytkownik getUzytkownikZglaszany() {
+        return uzytkownikZglaszany;
     }
 
-    public void setUzytkownikA(Uzytkownik uzytkownikA) {
-        this.uzytkownikA = uzytkownikA;
-    }
-
-    public Uzytkownik getUzytkownikB() {
-        return uzytkownikB;
-    }
-
-    public void setUzytkownikB(Uzytkownik uzytkownikB) {
-        this.uzytkownikB = uzytkownikB;
+    public void setUzytkownikZglaszany(Uzytkownik uzytkownikZglaszany) {
+        this.uzytkownikZglaszany = uzytkownikZglaszany;
     }
 
     public String getTresc() {

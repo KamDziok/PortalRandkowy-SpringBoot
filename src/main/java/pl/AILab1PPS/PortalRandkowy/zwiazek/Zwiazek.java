@@ -3,32 +3,26 @@ package pl.AILab1PPS.PortalRandkowy.zwiazek;
 import pl.AILab1PPS.PortalRandkowy.uzytkownik.Uzytkownik;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Zwiazek")
-public class Zwiazek {
+public class Zwiazek implements Serializable {
 
-    @EmbeddedId
-    private ZwiazekId id;
-
+    @Id
     @ManyToOne
+    @JoinColumn(name="uzytkownik_a_id", referencedColumnName="id")
     private Uzytkownik uzytkownikA;
 
+    @Id
     @ManyToOne
+    @JoinColumn(name="uzytkownik_b_id", referencedColumnName="id")
     private Uzytkownik uzytkownikB;
 
     @Column(name = "zgoda_blokada")
     private Integer zgodaBlokada;
 
     public Zwiazek() {
-    }
-
-    public ZwiazekId getId() {
-        return id;
-    }
-
-    public void setId(ZwiazekId id) {
-        this.id = id;
     }
 
     public Uzytkownik getUzytkownikA() {

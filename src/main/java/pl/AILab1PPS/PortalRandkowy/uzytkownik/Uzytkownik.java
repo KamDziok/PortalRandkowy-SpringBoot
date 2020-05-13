@@ -2,6 +2,8 @@ package pl.AILab1PPS.PortalRandkowy.uzytkownik;
 
 import pl.AILab1PPS.PortalRandkowy.podKategorie.PodKategorie;
 import pl.AILab1PPS.PortalRandkowy.zdjecia.Zdjecia;
+import pl.AILab1PPS.PortalRandkowy.zgloszenie.Zgloszenie;
+import pl.AILab1PPS.PortalRandkowy.zwiazek.Zwiazek;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -47,6 +49,33 @@ public class Uzytkownik {
     @OneToMany(mappedBy = "uzytkownik")
     private List<Zdjecia> zdjeciaList;
 
+    @OneToMany(
+            mappedBy = "uzytkownikA",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    List<Zwiazek> uzytkownikaAList;
+
+    @OneToMany(
+            mappedBy = "uzytkownikB",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    List<Zwiazek> uzytkownikaBList;
+
+    @OneToMany(
+            mappedBy = "uzytkownikZglaszajacy",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    List<Zgloszenie> uzytkownikZglaszajacyList;
+
+    @OneToMany(
+            mappedBy = "uzytkownikZglaszany",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    List<Zgloszenie> uzytkownikZglaszanyList;
 
     public Uzytkownik() {
     }
@@ -137,5 +166,37 @@ public class Uzytkownik {
 
     public void setZdjeciaList(List<Zdjecia> zdjeciaList) {
         this.zdjeciaList = zdjeciaList;
+    }
+
+    public List<Zwiazek> getUzytkownikaAList() {
+        return uzytkownikaAList;
+    }
+
+    public void setUzytkownikaAList(List<Zwiazek> uzytkownikaAList) {
+        this.uzytkownikaAList = uzytkownikaAList;
+    }
+
+    public List<Zwiazek> getUzytkownikaBList() {
+        return uzytkownikaBList;
+    }
+
+    public void setUzytkownikaBList(List<Zwiazek> uzytkownikaBList) {
+        this.uzytkownikaBList = uzytkownikaBList;
+    }
+
+    public List<Zgloszenie> getUzytkownikZglaszajacyList() {
+        return uzytkownikZglaszajacyList;
+    }
+
+    public void setUzytkownikZglaszajacyList(List<Zgloszenie> uzytkownikZglaszajacyList) {
+        this.uzytkownikZglaszajacyList = uzytkownikZglaszajacyList;
+    }
+
+    public List<Zgloszenie> getUzytkownikZglaszanyList() {
+        return uzytkownikZglaszanyList;
+    }
+
+    public void setUzytkownikZglaszanyList(List<Zgloszenie> uzytkownikZglaszanyList) {
+        this.uzytkownikZglaszanyList = uzytkownikZglaszanyList;
     }
 }
