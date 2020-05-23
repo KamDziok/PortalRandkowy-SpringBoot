@@ -11,12 +11,12 @@ public class Zwiazek implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name="uzytkownik_a_id", referencedColumnName="id")
+    @JoinColumn//(name="uzytkownik_a_id", referencedColumnName="id")
     private Uzytkownik uzytkownikA;
 
     @Id
     @ManyToOne
-    @JoinColumn(name="uzytkownik_b_id", referencedColumnName="id")
+    @JoinColumn//(name="uzytkownik_b_id", referencedColumnName="id")
     private Uzytkownik uzytkownikB;
 
     @Column(name = "zgoda_blokada")

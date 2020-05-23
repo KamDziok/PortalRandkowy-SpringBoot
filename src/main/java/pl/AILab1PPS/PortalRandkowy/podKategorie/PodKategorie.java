@@ -22,8 +22,8 @@ public class PodKategorie {
     @JoinColumn(name="kategorie_id", nullable=false)
     private Kategorie kategorie;
 
-    @ManyToMany(mappedBy = "podKategorieList")
-    private List<Uzytkownik> uzytkownikList;
+//    @ManyToMany(mappedBy = "podKategorieList")
+//    private List<Uzytkownik> uzytkownikList;
 
 
     public PodKategorie() {
@@ -53,11 +53,11 @@ public class PodKategorie {
         this.kategorie = kategorie;
     }
 
-    public List<Uzytkownik> getUzytkownikList() {
-        return uzytkownikList;
-    }
-
-    public void setUzytkownikList(List<Uzytkownik> uzytkownikList) {
-        this.uzytkownikList = uzytkownikList;
-    }
+//    public List<Uzytkownik> getUzytkownikList() {
+//        return uzytkownikList;
+//    }
+//
+//    public void setUzytkownikList(List<Uzytkownik> uzytkownikList) {
+//        this.uzytkownikList = uzytkownikList;
+//    }
 }

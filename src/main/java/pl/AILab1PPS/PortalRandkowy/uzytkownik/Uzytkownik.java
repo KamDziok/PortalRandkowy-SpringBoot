@@ -199,4 +199,14 @@ public class Uzytkownik {
     public void setUzytkownikZglaszanyList(List<Zgloszenie> uzytkownikZglaszanyList) {
         this.uzytkownikZglaszanyList = uzytkownikZglaszanyList;
     }
+
+    public Uzytkownik basicUzytkownik(){
+        Uzytkownik basicUzytkownik = new Uzytkownik();
+        basicUzytkownik.setId(this.id);
+        basicUzytkownik.setPlec(this.plec);
+        basicUzytkownik.setNick(this.nick);
+        basicUzytkownik.setMail(this.mail);
+        basicUzytkownik.setOpis(this.opis);
+        return basicUzytkownik;
+    }
 }

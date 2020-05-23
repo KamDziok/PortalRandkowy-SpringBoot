@@ -17,8 +17,8 @@ public class Kategorie {
     @NotNull
     private String nazwa;
 
-    @OneToMany(mappedBy = "kategorie")
-    private List<PodKategorie> podKategorieList;
+//    @OneToMany(mappedBy = "kategorie")
+//    private List<PodKategorie> podKategorieList;
 
     public Kategorie() {
     }
@@ -39,11 +39,11 @@ public class Kategorie {
         this.nazwa = nazwa;
     }
 
-    public List<PodKategorie> getPodKategorieList() {
-        return podKategorieList;
-    }
-
-    public void setPodKategorieList(List<PodKategorie> podKategorieList) {
-        this.podKategorieList = podKategorieList;
-    }
+//    public List<PodKategorie> getPodKategorieList() {
+//        return podKategorieList;
+//    }
+//
+//    public void setPodKategorieList(List<PodKategorie> podKategorieList) {
+//        this.podKategorieList = podKategorieList;
+//    }
 }
