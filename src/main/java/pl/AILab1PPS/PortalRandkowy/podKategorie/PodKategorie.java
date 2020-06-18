@@ -60,4 +60,16 @@ public class PodKategorie {
 //    public void setUzytkownikList(List<Uzytkownik> uzytkownikList) {
 //        this.uzytkownikList = uzytkownikList;
 //    }
+
+    public int countPointsForPodKategorie(PodKategorie podKategorie){
+        int result = 0;
+        if(this.id.intValue() == podKategorie.getId().intValue()){
+            result += 10;
+        }
+        if(this.kategorie.getId().intValue() == podKategorie.getKategorie().getId().intValue()){
+            result += 5;
+        }
+        return result;
+    }
+
 }

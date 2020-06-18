@@ -8,6 +8,8 @@ import pl.AILab1PPS.PortalRandkowy.zwiazek.Zwiazek;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity
 @Table(name = "Uzytkownicy")
@@ -208,5 +210,37 @@ public class Uzytkownik {
         basicUzytkownik.setMail(this.mail);
         basicUzytkownik.setOpis(this.opis);
         return basicUzytkownik;
+    }
+
+    public boolean isInRelationship(Uzytkownik uzytkownik){
+        AtomicBoolean result = new AtomicBoolean(false);
+        this.uzytkownikaAList.forEach(zwiazek -> {
+            if(zwiazek.getUzytkownikA().equals(uzytkownik)){
+                result.set(true);
+            }
+            if(zwiazek.getUzytkownikB().equals(uzytkownik)){
+                result.set(true);
+            }
+        });
+        this.uzytkownikaBList.forEach(zwiazek -> {
+            if(zwiazek.getUzytkownikA().equals(uzytkownik)){
+                result.set(true);
+            }
+            if(zwiazek.getUzytkownikB().equals(uzytkownik)){
+                result.set(true);
+            }
+        });
+        return result.get();
+    }
+
+    public int countPointsForPodKategorie(Uzytkownik user){
+        AtomicInteger result = new AtomicInteger();
+        result.set(0);
+        this.podKategorieList.forEach(podKategorie -> {
+            user.getPodKategorieList().forEach(podKategorie1 -> {
+                result.set(result.get() + podKategorie.countPointsForPodKategorie(podKategorie1));
+            });
+        });
+        return result.get();
     }
 }
