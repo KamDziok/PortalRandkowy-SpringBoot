@@ -65,19 +65,19 @@ public class Uzytkownik {
     )
     List<Zwiazek> uzytkownikaBList;
 
-    @OneToMany(
-            mappedBy = "uzytkownikZglaszajacy",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<Zgloszenie> uzytkownikZglaszajacyList;
-
-    @OneToMany(
-            mappedBy = "uzytkownikZglaszany",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<Zgloszenie> uzytkownikZglaszanyList;
+//    @OneToMany(
+//            mappedBy = "uzytkownikZglaszajacy",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    List<Zgloszenie> uzytkownikZglaszajacyList;
+//
+//    @OneToMany(
+//            mappedBy = "uzytkownikZglaszany",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    List<Zgloszenie> uzytkownikZglaszanyList;
 
     public Uzytkownik() {
     }
@@ -186,21 +186,21 @@ public class Uzytkownik {
         this.uzytkownikaBList = uzytkownikaBList;
     }
 
-    public List<Zgloszenie> getUzytkownikZglaszajacyList() {
-        return uzytkownikZglaszajacyList;
-    }
-
-    public void setUzytkownikZglaszajacyList(List<Zgloszenie> uzytkownikZglaszajacyList) {
-        this.uzytkownikZglaszajacyList = uzytkownikZglaszajacyList;
-    }
-
-    public List<Zgloszenie> getUzytkownikZglaszanyList() {
-        return uzytkownikZglaszanyList;
-    }
-
-    public void setUzytkownikZglaszanyList(List<Zgloszenie> uzytkownikZglaszanyList) {
-        this.uzytkownikZglaszanyList = uzytkownikZglaszanyList;
-    }
+//    public List<Zgloszenie> getUzytkownikZglaszajacyList() {
+//        return uzytkownikZglaszajacyList;
+//    }
+//
+//    public void setUzytkownikZglaszajacyList(List<Zgloszenie> uzytkownikZglaszajacyList) {
+//        this.uzytkownikZglaszajacyList = uzytkownikZglaszajacyList;
+//    }
+//
+//    public List<Zgloszenie> getUzytkownikZglaszanyList() {
+//        return uzytkownikZglaszanyList;
+//    }
+//
+//    public void setUzytkownikZglaszanyList(List<Zgloszenie> uzytkownikZglaszanyList) {
+//        this.uzytkownikZglaszanyList = uzytkownikZglaszanyList;
+//    }
 
     public Uzytkownik basicUzytkownik(){
         Uzytkownik basicUzytkownik = new Uzytkownik();
