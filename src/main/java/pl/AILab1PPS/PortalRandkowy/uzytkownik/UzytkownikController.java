@@ -19,6 +19,11 @@ public class UzytkownikController {
             return (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
         }
 
+    @GetMapping("/nick/{nick}/password/{password}")
+    private Uzytkownik getUzytkownik(@PathVariable("nick") String nick, @PathVariable("password") String password){
+        return uzytkownikRepository.findByNickAndHaslo(nick, password);
+    }
+
         @PostMapping
         private Uzytkownik addUzytkownik(@RequestBody Uzytkownik uzytkownik){
 
