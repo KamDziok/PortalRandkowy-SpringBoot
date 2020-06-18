@@ -19,8 +19,13 @@ public class UzytkownikController {
             return (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
         }
 
+    @GetMapping("/mail/{mail}/password/{password}")
+    private Uzytkownik getUzytkownikByMailAndPassword(@PathVariable("mail") String mail, @PathVariable("password") String password){
+        return uzytkownikRepository.findByMailAndHaslo(mail, password);
+    }
+
     @GetMapping("/nick/{nick}/password/{password}")
-    private Uzytkownik getUzytkownik(@PathVariable("nick") String nick, @PathVariable("password") String password){
+    private Uzytkownik getUzytkownikByNickAndPassword(@PathVariable("nick") String nick, @PathVariable("password") String password){
         return uzytkownikRepository.findByNickAndHaslo(nick, password);
     }
 
