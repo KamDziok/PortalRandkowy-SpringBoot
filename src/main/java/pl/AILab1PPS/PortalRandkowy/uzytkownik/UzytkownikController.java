@@ -24,11 +24,11 @@ public class UzytkownikController {
         }
 
     @GetMapping("/{id}")
-    private Uzytkownik getUzytkownik(@PathVariable("id") Long id){
+    private Uzytkownik getUzytkownik(@PathVariable("id") int id){
             AtomicReference<Uzytkownik> result = null;
         List<Uzytkownik> users =  (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
         users.forEach(user -> {
-            if(user.getId().intValue() == id.intValue()){
+            if(user.getId().intValue() == id){
                 result.set(user);
             }
         });
