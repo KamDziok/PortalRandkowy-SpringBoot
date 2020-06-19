@@ -67,7 +67,7 @@ public class UzytkownikController {
         int i = (low-1);
         for (int j=low; j<high; j++)
         {
-            if (proposedRelationshipList.get(j).getPoints() < pivot.getPoints())
+            if (proposedRelationshipList.get(j).getPoints() > pivot.getPoints())//<
             {
                 i++;
                 ProposedRelationship temp = proposedRelationshipList.get(i);
