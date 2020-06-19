@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.AILab1PPS.PortalRandkowy.zwiazek.ProposedRelationship;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
 @RequestMapping("api/uzytkownik")
@@ -22,6 +22,18 @@ public class UzytkownikController {
 
             return (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
         }
+
+    @GetMapping("/{id}")
+    private Uzytkownik getUzytkownik(@PathVariable("id") Long id){
+            AtomicReference<Uzytkownik> result = null;
+        List<Uzytkownik> users =  (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
+        users.forEach(user -> {
+            if(user.getId().intValue() == id.intValue()){
+                result.set(user);
+            }
+        });
+        return result.get();
+    }
 
     @GetMapping("/mail/{mail}/password/{password}")
     private Uzytkownik getUzytkownikByMailAndPassword(@PathVariable("mail") String mail, @PathVariable("password") String password){
