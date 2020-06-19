@@ -52,22 +52,17 @@ public class UzytkownikController {
 
     int partition(List<ProposedRelationship> proposedRelationshipList, int low, int high) {
         ProposedRelationship pivot = proposedRelationshipList.get(high);
-        int i = (low-1); // index of smaller element
+        int i = (low-1);
         for (int j=low; j<high; j++)
         {
-            // If current element is smaller than the pivot
             if (proposedRelationshipList.get(j).getPoints() < pivot.getPoints())
             {
                 i++;
-
-                // swap arr[i] and arr[j]
                 ProposedRelationship temp = proposedRelationshipList.get(i);
                 proposedRelationshipList.set(i, proposedRelationshipList.get(j));
                 proposedRelationshipList.set(j, temp);
             }
         }
-
-        // swap arr[i+1] and arr[high] (or pivot)
         ProposedRelationship temp =  proposedRelationshipList.get(i+1);
         proposedRelationshipList.set(i+1, proposedRelationshipList.get(high));
         proposedRelationshipList.set(high, temp);
@@ -79,12 +74,8 @@ public class UzytkownikController {
     {
         if (low < high)
         {
-            /* pi is partitioning index, arr[pi] is
-              now at right place */
             int pi = partition(proposedRelationshipList, low, high);
 
-            // Recursively sort elements before
-            // partition and after partition
             sort(proposedRelationshipList, low, pi-1);
             sort(proposedRelationshipList, pi+1, high);
         }
@@ -92,14 +83,14 @@ public class UzytkownikController {
 
     @PostMapping
         private Uzytkownik addUzytkownik(@RequestBody Uzytkownik uzytkownik){
-            uzytkownikRepository.save(uzytkownik);
-            return uzytkownikRepository.getOne(uzytkownik.getId());
+            Uzytkownik user = uzytkownikRepository.save(uzytkownik);
+            return uzytkownikRepository.getOne(user.getId());
         }
 
         @PutMapping
         private Uzytkownik updateUzytkownik(@RequestBody Uzytkownik uzytkownik){
-            uzytkownikRepository.save(uzytkownik);
-            return uzytkownikRepository.getOne(uzytkownik.getId());
+            Uzytkownik user = uzytkownikRepository.save(uzytkownik);
+            return uzytkownikRepository.getOne(user.getId());
         }
 
         @DeleteMapping
