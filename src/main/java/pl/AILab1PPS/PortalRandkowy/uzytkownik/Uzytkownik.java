@@ -2,7 +2,6 @@ package pl.AILab1PPS.PortalRandkowy.uzytkownik;
 
 import pl.AILab1PPS.PortalRandkowy.podKategorie.PodKategorie;
 import pl.AILab1PPS.PortalRandkowy.zdjecia.Zdjecia;
-import pl.AILab1PPS.PortalRandkowy.zgloszenie.Zgloszenie;
 import pl.AILab1PPS.PortalRandkowy.zwiazek.Zwiazek;
 
 import javax.persistence.*;
