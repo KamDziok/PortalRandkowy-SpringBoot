@@ -92,14 +92,14 @@ public class UzytkownikController {
 
     @PostMapping
         private Uzytkownik addUzytkownik(@RequestBody Uzytkownik uzytkownik){
-
-            return uzytkownikRepository.save(uzytkownik);
+            uzytkownikRepository.save(uzytkownik);
+            return uzytkownikRepository.getOne(uzytkownik.getId());
         }
 
         @PutMapping
         private Uzytkownik updateUzytkownik(@RequestBody Uzytkownik uzytkownik){
-
-            return uzytkownikRepository.save(uzytkownik);
+            uzytkownikRepository.save(uzytkownik);
+            return uzytkownikRepository.getOne(uzytkownik.getId());
         }
 
         @DeleteMapping
