@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/zgloszenie")
+@CrossOrigin
 public class ZgloszenieController {
     @Autowired
     private ZgloszenieRepository zgloszenieRepository;
