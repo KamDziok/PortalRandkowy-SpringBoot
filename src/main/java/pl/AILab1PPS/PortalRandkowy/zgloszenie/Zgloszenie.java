@@ -15,11 +15,9 @@ public class Zgloszenie implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn//(name="uzytkownik_zglaszajacy")
     private Uzytkownik uzytkownikZglaszajacy;
 
     @ManyToOne
-    @JoinColumn//(name="uzytkownik_zglaszany")
     private Uzytkownik uzytkownikZglaszany;
 
     @Column(name = "tresc")
