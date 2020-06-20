@@ -6,6 +6,7 @@ import pl.AILab1PPS.PortalRandkowy.zwiazek.ProposedRelationship;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
@@ -14,18 +15,17 @@ import java.util.concurrent.atomic.AtomicReference;
 public class UzytkownikController {
 
 
-        @Autowired
-        private UzytkownikRepository uzytkownikRepository;
+    @Autowired
+    private UzytkownikRepository uzytkownikRepository;
 
-        @GetMapping
-        private ArrayList<Uzytkownik> getAllUzytkownik(){
-
-            return (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
-        }
+    @GetMapping
+    private ArrayList<Uzytkownik> getAllUzytkownik(){
+       return (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
+    }
 
     @GetMapping("/{id}")
     private Uzytkownik getUzytkownik(@PathVariable("id") Long id){
-            AtomicReference<Uzytkownik> result = new AtomicReference<Uzytkownik>();
+        AtomicReference<Uzytkownik> result = new AtomicReference<Uzytkownik>();
         List<Uzytkownik> users =  (ArrayList<Uzytkownik>) uzytkownikRepository.findAll();
         users.forEach(user -> {
             if(user.getId().intValue() == id.intValue()){
@@ -93,21 +93,30 @@ public class UzytkownikController {
         }
     }
 
+    private Uzytkownik getOne(Long id){
+        Optional<Uzytkownik> result =  ( (ArrayList<Uzytkownik>) uzytkownikRepository.findAll()).stream().
+                filter(user -> user.getId().intValue() == id.intValue()).findFirst();
+        return result.get();
+    }
+
     @PostMapping
-        private Uzytkownik addUzytkownik(@RequestBody Uzytkownik uzytkownik){
+    private Uzytkownik addUzytkownik(@RequestBody Uzytkownik uzytkownik){
+        if (uzytkownikRepository.findByMailAndNick(uzytkownik.getMail(), uzytkownik.getNick()) == null) {
             Uzytkownik user = uzytkownikRepository.save(uzytkownik);
-            return uzytkownikRepository.getOne(user.getId());
+            return getOne(user.getId());
         }
+        return null;
+    }
 
-        @PutMapping
-        private Uzytkownik updateUzytkownik(@RequestBody Uzytkownik uzytkownik){
-            Uzytkownik user = uzytkownikRepository.save(uzytkownik);
-            return uzytkownikRepository.getOne(user.getId());
-        }
+    @PutMapping
+    private Uzytkownik updateUzytkownik(@RequestBody Uzytkownik uzytkownik){
+        Uzytkownik user = uzytkownikRepository.save(uzytkownik);
+        return uzytkownikRepository.getOne(user.getId());
+    }
 
-        @DeleteMapping
-        private Uzytkownik deleteUzytkownik(@RequestBody Uzytkownik uzytkownik){
-            uzytkownikRepository.delete(uzytkownik);
-            return uzytkownik;
-        }
+    @DeleteMapping
+    private Uzytkownik deleteUzytkownik(@RequestBody Uzytkownik uzytkownik){
+        uzytkownikRepository.delete(uzytkownik);
+        return uzytkownik;
+    }
 }

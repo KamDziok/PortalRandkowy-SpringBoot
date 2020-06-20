@@ -36,9 +36,7 @@ public class Uzytkownik {
     @NotNull
     private Integer uprawnienia;
 
-    private Integer lokalizacjaX;
-
-    private Integer lokalizacjaY;
+    private String miejscowosc;
 
     @ManyToMany
     @JoinTable(name = "Uzytkownicy_PodKategorie",
@@ -137,20 +135,12 @@ public class Uzytkownik {
         this.uprawnienia = uprawnienia;
     }
 
-    public Integer getLokalizacjaX() {
-        return lokalizacjaX;
+    public String getMisato() {
+        return miejscowosc;
     }
 
-    public void setLokalizacjaX(Integer lokalizacjaX) {
-        this.lokalizacjaX = lokalizacjaX;
-    }
-
-    public Integer getLokalizacjaY() {
-        return lokalizacjaY;
-    }
-
-    public void setLokalizacjaY(Integer lokalizacjaY) {
-        this.lokalizacjaY = lokalizacjaY;
+    public void setMisato(String misato) {
+        this.miejscowosc = misato;
     }
 
     public List<PodKategorie> getPodKategorieList() {
