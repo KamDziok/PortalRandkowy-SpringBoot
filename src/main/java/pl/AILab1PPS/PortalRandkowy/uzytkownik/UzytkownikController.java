@@ -52,9 +52,11 @@ public class UzytkownikController {
         List<Uzytkownik> userList = (List<Uzytkownik>)uzytkownikRepository.findAll();
         userList.forEach(user -> {
             if(user.getId().intValue() != userCurrent.getId().intValue()){
-                if(!user.isInRelationship(userCurrent)){
-                    proposedRelationshipList.add(new ProposedRelationship(user.basicUzytkownik(),
-                            user.countPointsForPodKategorie(userCurrent)));
+                if(userCurrent.isDifferentSex(user)) {
+                    if (!user.isInRelationship(userCurrent)) {
+                        proposedRelationshipList.add(new ProposedRelationship(user.basicUzytkownik(),
+                                user.countPointsForPodKategorie(userCurrent)));
+                    }
                 }
             }
         });
@@ -103,6 +105,7 @@ public class UzytkownikController {
     private Uzytkownik addUzytkownik(@RequestBody Uzytkownik uzytkownik){
         if (uzytkownikRepository.findByMail(uzytkownik.getMail()) == null) {
             if(uzytkownikRepository.findByNick(uzytkownik.getNick()) == null) {
+                uzytkownik.setMiejscowosc(uzytkownik.getMiejscowosc().toLowerCase());
                 Uzytkownik user = uzytkownikRepository.save(uzytkownik);
                 return getOne(user.getId());
             }

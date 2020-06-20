@@ -10,19 +10,31 @@ import java.io.Serializable;
 public class Zwiazek implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+//    @Id
     @ManyToOne
-    @JoinColumn//(name="uzytkownik_a_id", referencedColumnName="id")
+//    @JoinColumn//(name="uzytkownik_a_id", referencedColumnName="id")
     private Uzytkownik uzytkownikA;
 
-    @Id
+//    @Id
     @ManyToOne
-    @JoinColumn//(name="uzytkownik_b_id", referencedColumnName="id")
+//    @JoinColumn//(name="uzytkownik_b_id", referencedColumnName="id")
     private Uzytkownik uzytkownikB;
 
     @Column(name = "zgoda_blokada")
     private Integer zgodaBlokada;
 
     public Zwiazek() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Uzytkownik getUzytkownikA() {

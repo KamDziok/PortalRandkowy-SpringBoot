@@ -48,19 +48,22 @@ public class Uzytkownik {
     @OneToMany(mappedBy = "uzytkownik")
     private List<Zdjecia> zdjeciaList;
 
-    @OneToMany(
-            mappedBy = "uzytkownikA",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<Zwiazek> uzytkownikaAList;
+    @OneToMany
+    private List<Zdjecia> zwiazki;
 
-    @OneToMany(
-            mappedBy = "uzytkownikB",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    List<Zwiazek> uzytkownikaBList;
+//    @OneToMany(
+//            mappedBy = "uzytkownikA",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    List<Zwiazek> uzytkownikaAList;
+
+//    @OneToMany(
+//            mappedBy = "uzytkownikB",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    List<Zwiazek> uzytkownikaBList;
 
 //    @OneToMany(
 //            mappedBy = "uzytkownikZglaszajacy",
@@ -135,11 +138,11 @@ public class Uzytkownik {
         this.uprawnienia = uprawnienia;
     }
 
-    public String getMisato() {
+    public String getMiejscowosc() {
         return miejscowosc;
     }
 
-    public void setMisato(String misato) {
+    public void setMiejscowosc(String misato) {
         this.miejscowosc = misato;
     }
 
@@ -159,21 +162,29 @@ public class Uzytkownik {
         this.zdjeciaList = zdjeciaList;
     }
 
-    public List<Zwiazek> getUzytkownikaAList() {
-        return uzytkownikaAList;
+    public List<Zdjecia> getZwiazki() {
+        return zwiazki;
     }
 
-    public void setUzytkownikaAList(List<Zwiazek> uzytkownikaAList) {
-        this.uzytkownikaAList = uzytkownikaAList;
+    public void setZwiazki(List<Zdjecia> zwiazki) {
+        this.zwiazki = zwiazki;
     }
 
-    public List<Zwiazek> getUzytkownikaBList() {
-        return uzytkownikaBList;
-    }
+    //    public List<Zwiazek> getUzytkownikaAList() {
+//        return uzytkownikaAList;
+//    }
+//
+//    public void setUzytkownikaAList(List<Zwiazek> uzytkownikaAList) {
+//        this.uzytkownikaAList = uzytkownikaAList;
+//    }
 
-    public void setUzytkownikaBList(List<Zwiazek> uzytkownikaBList) {
-        this.uzytkownikaBList = uzytkownikaBList;
-    }
+//    public List<Zwiazek> getUzytkownikaBList() {
+//        return uzytkownikaBList;
+//    }
+//
+//    public void setUzytkownikaBList(List<Zwiazek> uzytkownikaBList) {
+//        this.uzytkownikaBList = uzytkownikaBList;
+//    }
 
 //    public List<Zgloszenie> getUzytkownikZglaszajacyList() {
 //        return uzytkownikZglaszajacyList;
@@ -202,23 +213,23 @@ public class Uzytkownik {
     }
 
     public boolean isInRelationship(Uzytkownik uzytkownik){
-        AtomicBoolean result = new AtomicBoolean(false);
-        this.uzytkownikaAList.forEach(zwiazek -> {
-            if(zwiazek.getUzytkownikA().equals(uzytkownik)){
-                result.set(true);
-            }
-            if(zwiazek.getUzytkownikB().equals(uzytkownik)){
-                result.set(true);
-            }
-        });
-        this.uzytkownikaBList.forEach(zwiazek -> {
-            if(zwiazek.getUzytkownikA().equals(uzytkownik)){
-                result.set(true);
-            }
-            if(zwiazek.getUzytkownikB().equals(uzytkownik)){
-                result.set(true);
-            }
-        });
+        AtomicBoolean result = new AtomicBoolean(true);
+//        this.uzytkownikaAList.forEach(zwiazek -> {
+//            if(zwiazek.getUzytkownikA().equals(uzytkownik)){
+//                result.set(true);
+//            }
+//            if(zwiazek.getUzytkownikB().equals(uzytkownik)){
+//                result.set(true);
+//            }
+//        });
+//        this.uzytkownikaBList.forEach(zwiazek -> {
+//            if(zwiazek.getUzytkownikA().equals(uzytkownik)){
+//                result.set(true);
+//            }
+//            if(zwiazek.getUzytkownikB().equals(uzytkownik)){
+//                result.set(true);
+//            }
+//        });
         return result.get();
     }
 
@@ -230,6 +241,16 @@ public class Uzytkownik {
                 result.set(result.get() + podKategorie.countPointsForPodKategorie(podKategorie1));
             });
         });
+        if(this.miejscowosc.equals(user.getMiejscowosc())){
+            result.set(result.get() + 10);
+        }
         return result.get();
+    }
+
+    public boolean isDifferentSex(Uzytkownik user){
+        if(this.plec != user.getPlec()){
+            return true;
+        }
+        return false;
     }
 }
