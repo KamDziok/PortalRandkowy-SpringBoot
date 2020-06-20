@@ -101,9 +101,11 @@ public class UzytkownikController {
 
     @PostMapping
     private Uzytkownik addUzytkownik(@RequestBody Uzytkownik uzytkownik){
-        if (uzytkownikRepository.findByMailAndNick(uzytkownik.getMail(), uzytkownik.getNick()) == null) {
-            Uzytkownik user = uzytkownikRepository.save(uzytkownik);
-            return getOne(user.getId());
+        if (uzytkownikRepository.findByMail(uzytkownik.getMail()) == null) {
+            if(uzytkownikRepository.findByNick(uzytkownik.getNick()) == null) {
+                Uzytkownik user = uzytkownikRepository.save(uzytkownik);
+                return getOne(user.getId());
+            }
         }
         return null;
     }

@@ -6,5 +6,7 @@ public interface UzytkownikRepository extends PagingAndSortingRepository<Uzytkow
     Uzytkownik findByNickAndHaslo(String nick, String password);
     Uzytkownik findByMailAndHaslo(String mail, String password);
     Uzytkownik findByMailAndNick(String mail, String nick);
+    Uzytkownik findByMail(String mail);
+    Uzytkownik findByNick(String nick);
     Uzytkownik getOne(Long id);
 }
