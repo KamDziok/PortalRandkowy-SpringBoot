@@ -27,7 +27,7 @@ public class Zdjecia {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "uzytkownik_id", nullable = false)
+//    @JoinColumn(name = "uzytkownik_id", nullable = false)
     private Uzytkownik uzytkownik;
 
     public Zdjecia() {
