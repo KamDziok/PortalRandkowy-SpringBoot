@@ -35,7 +35,7 @@ public class Uzytkownik {
     private String opis;
 
     @NotNull
-    private Integer uprawnienia;
+    private int uprawnienia;
 
     private String miejscowosc;
 
@@ -214,7 +214,7 @@ public class Uzytkownik {
     }
 
     public boolean isClient(){
-        return this.uprawnienia == Permissions.CLIENT;
+        return (this.uprawnienia == Permissions.CLIENT);
     }
 
     public boolean isInRelationship(Uzytkownik uzytkownik){
