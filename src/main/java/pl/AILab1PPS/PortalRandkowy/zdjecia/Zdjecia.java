@@ -15,6 +15,8 @@ public class Zdjecia {
     private Long id;
 
     @NotNull
+    private String tytul;
+
     private String link;
 
     @NotNull
@@ -27,7 +29,6 @@ public class Zdjecia {
 
     @NotNull
     @ManyToOne
-//    @JoinColumn(name = "uzytkownik_id", nullable = false)
     private Uzytkownik uzytkownik;
 
     public Zdjecia() {
@@ -39,6 +40,14 @@ public class Zdjecia {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTytul() {
+        return tytul;
+    }
+
+    public void setTytul(String tytul) {
+        this.tytul = tytul;
     }
 
     public String getLink() {
