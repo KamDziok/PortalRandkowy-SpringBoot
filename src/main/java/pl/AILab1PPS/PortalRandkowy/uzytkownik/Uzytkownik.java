@@ -253,9 +253,6 @@ public class Uzytkownik {
     }
 
     public boolean isDifferentSex(Uzytkownik user){
-        if(this.plec != user.getPlec()){
-            return true;
-        }
-        return false;
+        return !(this.plec == user.getPlec());
     }
 }
