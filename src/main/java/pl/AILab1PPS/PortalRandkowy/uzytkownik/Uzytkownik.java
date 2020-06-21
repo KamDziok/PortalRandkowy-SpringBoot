@@ -46,11 +46,11 @@ public class Uzytkownik {
     )
     List<PodKategorie> podKategorieList;
 
-    @OneToMany(mappedBy = "uzytkownik")
-    private List<Zdjecia> zdjeciaList;
-
-    @OneToMany
-    private List<Zdjecia> zwiazki;
+//    @OneToMany(mappedBy = "uzytkownik")
+//    private List<Zdjecia> zdjeciaList;
+//
+//    @OneToMany(mappedBy = "uzytkownik")
+//    private List<Zdjecia> zwiazki;
 
 //    @OneToMany(
 //            mappedBy = "uzytkownikA",
@@ -155,21 +155,21 @@ public class Uzytkownik {
         this.podKategorieList = podKategorieList;
     }
 
-    public List<Zdjecia> getZdjeciaList() {
-        return zdjeciaList;
-    }
-
-    public void setZdjeciaList(List<Zdjecia> zdjeciaList) {
-        this.zdjeciaList = zdjeciaList;
-    }
-
-    public List<Zdjecia> getZwiazki() {
-        return zwiazki;
-    }
-
-    public void setZwiazki(List<Zdjecia> zwiazki) {
-        this.zwiazki = zwiazki;
-    }
+//    public List<Zdjecia> getZdjeciaList() {
+//        return zdjeciaList;
+//    }
+//
+//    public void setZdjeciaList(List<Zdjecia> zdjeciaList) {
+//        this.zdjeciaList = zdjeciaList;
+//    }
+//
+//    public List<Zdjecia> getZwiazki() {
+//        return zwiazki;
+//    }
+//
+//    public void setZwiazki(List<Zdjecia> zwiazki) {
+//        this.zwiazki = zwiazki;
+//    }
 
     //    public List<Zwiazek> getUzytkownikaAList() {
 //        return uzytkownikaAList;
