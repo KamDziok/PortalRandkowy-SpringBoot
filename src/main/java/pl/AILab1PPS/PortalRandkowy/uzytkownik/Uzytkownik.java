@@ -218,7 +218,7 @@ public class Uzytkownik {
     }
 
     public boolean isInRelationship(Uzytkownik uzytkownik){
-        AtomicBoolean result = new AtomicBoolean(true);
+        AtomicBoolean result = new AtomicBoolean(false);
 //        this.uzytkownikaAList.forEach(zwiazek -> {
 //            if(zwiazek.getUzytkownikA().equals(uzytkownik)){
 //                result.set(true);
