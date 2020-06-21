@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/zwiazek")
+@CrossOrigin
 public class ZwiazekController {
     @Autowired
     private ZwiazekRepository zwiazekRepository;
