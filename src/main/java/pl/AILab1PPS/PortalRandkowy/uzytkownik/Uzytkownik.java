@@ -1,6 +1,7 @@
 package pl.AILab1PPS.PortalRandkowy.uzytkownik;
 
 import pl.AILab1PPS.PortalRandkowy.podKategorie.PodKategorie;
+import pl.AILab1PPS.PortalRandkowy.statics.Permissions;
 import pl.AILab1PPS.PortalRandkowy.zdjecia.Zdjecia;
 import pl.AILab1PPS.PortalRandkowy.zwiazek.Zwiazek;
 
@@ -210,6 +211,10 @@ public class Uzytkownik {
         basicUzytkownik.setMail(this.mail);
         basicUzytkownik.setOpis(this.opis);
         return basicUzytkownik;
+    }
+
+    public boolean isClient(){
+        return this.uprawnienia == Permissions.CLIENT;
     }
 
     public boolean isInRelationship(Uzytkownik uzytkownik){

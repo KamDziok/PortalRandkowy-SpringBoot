@@ -52,10 +52,12 @@ public class UzytkownikController {
         List<Uzytkownik> userList = (List<Uzytkownik>)uzytkownikRepository.findAll();
         userList.forEach(user -> {
             if(user.getId().intValue() != userCurrent.getId().intValue()){
-                if(userCurrent.isDifferentSex(user)) {
-                    if (!user.isInRelationship(userCurrent)) {
-                        proposedRelationshipList.add(new ProposedRelationship(user.basicUzytkownik(),
-                                user.countPointsForPodKategorie(userCurrent)));
+                if(user.isClient()) {
+                    if (userCurrent.isDifferentSex(user)) {
+                        if (!user.isInRelationship(userCurrent)) {
+                            proposedRelationshipList.add(new ProposedRelationship(user.basicUzytkownik(),
+                                    user.countPointsForPodKategorie(userCurrent)));
+                        }
                     }
                 }
             }
