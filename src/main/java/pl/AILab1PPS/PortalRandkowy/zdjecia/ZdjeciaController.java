@@ -25,18 +25,19 @@ public class ZdjeciaController {
 
     @GetMapping
     private ArrayList<Zdjecia> getAllZdjecia(){
-        List<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
-        ArrayList<Zdjecia> zdjeciaListToSend = new ArrayList<>();
-        zdjeciaList.forEach(zdjecie -> {
-            Zdjecia zdjecieToSend = new Zdjecia();
-            zdjecieToSend.setId(zdjecie.getId());
-            zdjecieToSend.setLink(zdjecie.getLink());
-            zdjecieToSend.setOpis(zdjecie.getOpis());
-            zdjecieToSend.setStatus(zdjecie.getStatus());
-            zdjecieToSend.setUzytkownik(zdjecie.getUzytkownik().basicUzytkownik());
-            zdjeciaListToSend.add(zdjecieToSend);
-        });
-        return zdjeciaListToSend;
+//        List<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
+//        ArrayList<Zdjecia> zdjeciaListToSend = new ArrayList<>();
+//        zdjeciaList.forEach(zdjecie -> {
+//            Zdjecia zdjecieToSend = new Zdjecia();
+//            zdjecieToSend.setId(zdjecie.getId());
+//            zdjecieToSend.setLink(zdjecie.getLink());
+//            zdjecieToSend.setOpis(zdjecie.getOpis());
+//            zdjecieToSend.setStatus(zdjecie.getStatus());
+//            zdjecieToSend.setUzytkownik(zdjecie.getUzytkownik().basicUzytkownik());
+//            zdjeciaListToSend.add(zdjecieToSend);
+//        });
+//        return zdjeciaListToSend;
+        return (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
     }
 
     private Zdjecia getOne(Long id){
