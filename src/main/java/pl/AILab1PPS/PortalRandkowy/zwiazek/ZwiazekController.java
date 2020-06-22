@@ -2,6 +2,7 @@ package pl.AILab1PPS.PortalRandkowy.zwiazek;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.AILab1PPS.PortalRandkowy.statics.Relationship;
 
 import java.util.List;
 
@@ -19,6 +20,11 @@ public class ZwiazekController {
 
     @PostMapping
     private Zwiazek addZwiazek(@RequestBody Zwiazek zwiazek){
+        Zwiazek isInRelationship = zwiazekRepository.findByUzytkownikAAndUzytkownikB(zwiazek.getUzytkownikB(), zwiazek.getUzytkownikA());
+        if(isInRelationship != null){
+            isInRelationship.setZgodaBlokada(Relationship.FRIENDS);
+            return zwiazekRepository.save(isInRelationship);
+        }
         return zwiazekRepository.save(zwiazek);
     }
 
