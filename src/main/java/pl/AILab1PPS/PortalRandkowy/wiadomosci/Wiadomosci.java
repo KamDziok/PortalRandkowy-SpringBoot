@@ -2,10 +2,7 @@ package pl.AILab1PPS.PortalRandkowy.wiadomosci;
 
 import pl.AILab1PPS.PortalRandkowy.uzytkownik.Uzytkownik;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -17,9 +14,11 @@ public class Wiadomosci {
     private Long id;
 
     @NotNull
+    @ManyToOne
     private Uzytkownik nadawca;
 
     @NotNull
+    @ManyToOne
     private Uzytkownik odbiorca;
 
     @NotNull
