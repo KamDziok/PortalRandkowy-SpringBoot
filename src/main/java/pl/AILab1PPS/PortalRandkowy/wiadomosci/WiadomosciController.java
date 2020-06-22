@@ -50,6 +50,7 @@ public class WiadomosciController {
                     }
                     if(j == wynik.size() - 1){
                         wynik.add(wiadomoscResult);
+                        break;
                     }
                 }
             }
