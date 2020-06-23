@@ -3,6 +3,9 @@ package pl.AILab1PPS.PortalRandkowy.zdjecia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pl.AILab1PPS.PortalRandkowy.statics.TypeOfImage;
+import pl.AILab1PPS.PortalRandkowy.uzytkownik.Uzytkownik;
+import pl.AILab1PPS.PortalRandkowy.uzytkownik.UzytkownikRepository;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,6 +25,8 @@ public class ZdjeciaController {
 
     @Autowired
     private ZdjeciaRepository zdjeciaRepository;
+    @Autowired
+    private UzytkownikRepository uzytkownikRepository;
 
     @GetMapping
     private ArrayList<Zdjecia> getAllZdjecia(){
@@ -114,5 +119,15 @@ public class ZdjeciaController {
     private Zdjecia deleteZdjecia(@RequestBody Zdjecia zdjecia){
         zdjeciaRepository.delete(zdjecia);
         return zdjecia;
+    }
+
+    @DeleteMapping("/uzytkownik/{id}")
+    private boolean deleteZdjecia(@PathVariable("id") Long id){
+        boolean result = false;
+        Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
+        if(!user.isEmpty()){
+            result = zdjeciaRepository.deleteAllByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+        }
+        return result;
     }
 }
