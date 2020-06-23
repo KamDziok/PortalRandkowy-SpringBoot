@@ -19,7 +19,7 @@ public class UzytkownikController {
 
     @Autowired
     private UzytkownikRepository uzytkownikRepository;
-    Autowired
+    @Autowired
     private ZwiazekRepository zwiazekRepository;
 
     @GetMapping
