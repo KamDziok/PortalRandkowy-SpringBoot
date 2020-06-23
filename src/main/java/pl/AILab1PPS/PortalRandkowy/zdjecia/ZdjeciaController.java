@@ -27,6 +27,8 @@ public class ZdjeciaController {
     private ZdjeciaRepository zdjeciaRepository;
     @Autowired
     private UzytkownikRepository uzytkownikRepository;
+    @Autowired
+    private ZdjeciaRepositoryDelete zdjeciaRepositoryDelete;
 
     @GetMapping
     private ArrayList<Zdjecia> getAllZdjecia(){
@@ -136,7 +138,7 @@ public class ZdjeciaController {
         boolean result = false;
         Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
         Zdjecia zdjecia = zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
-        zdjeciaRepository.delete(zdjecia);
+        zdjeciaRepositoryDelete.delete(zdjecia);
         result = true;
         return result;
     }
