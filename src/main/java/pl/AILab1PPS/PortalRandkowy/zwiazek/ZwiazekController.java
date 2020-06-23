@@ -6,6 +6,7 @@ import pl.AILab1PPS.PortalRandkowy.statics.Relationship;
 import pl.AILab1PPS.PortalRandkowy.uzytkownik.Uzytkownik;
 import pl.AILab1PPS.PortalRandkowy.uzytkownik.UzytkownikRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,20 @@ public class ZwiazekController {
     @GetMapping
     private List<Zwiazek> getAllZwiazek(){
         return (List<Zwiazek>) zwiazekRepository.findAll();
+    }
+
+    @GetMapping("/uzytkownik/{id}")
+    private List<Zwiazek> getAllUzytkownicy(@PathVariable("id") Long idUser){
+        Optional<Uzytkownik> user = uzytkownikRepository.findById(idUser);
+        List<Zwiazek> zwiazekList = zwiazekRepository.findAllByUzytkownikA(user.get());
+        zwiazekList.addAll(zwiazekRepository.findAllByUzytkownikB(user.get()));
+        List<Zwiazek> result = new ArrayList<>();
+        zwiazekList.forEach(zwiazek -> {
+            if(zwiazek.getZgodaBlokada() > Relationship.PROPOSED){
+                result.add(zwiazek);
+            }
+        });
+        return result;
     }
 
     @GetMapping("/uzytkownikA/{idA}/uzytkownikB/{idB}")
