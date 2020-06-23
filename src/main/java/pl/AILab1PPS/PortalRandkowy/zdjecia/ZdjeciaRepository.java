@@ -6,4 +6,5 @@ import pl.AILab1PPS.PortalRandkowy.uzytkownik.Uzytkownik;
 
 public interface ZdjeciaRepository extends JpaRepository<Zdjecia, Long> {
     boolean deleteAllByUzytkownikAndStatus(Uzytkownik user, Integer status);
+    Zdjecia findByUzytkownikAndStatus(Uzytkownik user, Integer status);
 }

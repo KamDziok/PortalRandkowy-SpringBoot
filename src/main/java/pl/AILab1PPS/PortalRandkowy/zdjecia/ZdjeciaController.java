@@ -121,13 +121,23 @@ public class ZdjeciaController {
         return zdjecia;
     }
 
+//    @DeleteMapping("/uzytkownik/{id}")
+//    private boolean deleteZdjecia(@PathVariable("id") Long id){
+//        boolean result = false;
+//        Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
+//        if(!user.isEmpty()){
+//            result = zdjeciaRepository.deleteAllByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+//        }
+//        return result;
+//    }
+
     @DeleteMapping("/uzytkownik/{id}")
     private boolean deleteZdjecia(@PathVariable("id") Long id){
         boolean result = false;
         Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
-        if(!user.isEmpty()){
-            result = zdjeciaRepository.deleteAllByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
-        }
+        Zdjecia zdjecia = zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+        zdjeciaRepository.delete(zdjecia);
+        result = true;
         return result;
     }
 }
