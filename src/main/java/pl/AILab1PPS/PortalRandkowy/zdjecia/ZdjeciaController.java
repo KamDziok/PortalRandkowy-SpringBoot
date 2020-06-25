@@ -47,6 +47,14 @@ public class ZdjeciaController {
         return (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
     }
 
+    @GetMapping("/profil/uzytkownik/{id}")
+    private Zdjecia getZdjecieProfilowe(@PathVariable Long id){
+        ArrayList<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
+        Optional<Zdjecia> result = zdjeciaRepository.findAll().stream()
+                .filter(zdjecia -> (zdjecia.getUzytkownik().getId().intValue() == id.intValue() && zdjecia.getStatus() == TypeOfImage.PROFILE)).findFirst();
+        return result.get();
+    }
+
     @GetMapping("/uzytkownik/{id}")
     private ArrayList<Zdjecia> getAllUzytkownicyZdjecia(@PathVariable Long id){
         ArrayList<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
