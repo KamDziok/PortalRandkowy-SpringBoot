@@ -58,7 +58,7 @@ public class ZdjeciaController {
 //        return result.get();
         Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
         if(!user.isEmpty()){
-            return zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);w
+            return zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
         }
         return null;
     }
