@@ -45,10 +45,11 @@ public class WiadomosciController {
                 Wiadomosci wiadomoscResult = result.get(i);
                 for(int j = 0; j < wynik.size(); j++){
                     Wiadomosci wiadomoscWynik = wynik.get(j);
-                    if(wiadomoscWynik.getDataNadeslania().compareTo(wiadomoscResult.getDataNadeslania()) < 0){
+                    if(wiadomoscWynik.getDataNadeslania().compareTo(wiadomoscResult.getDataNadeslania()) > 0){
                         wynik = insertBefore(wynik, wiadomoscResult, j);
+                        break;
                     }
-                    if(j == wynik.size() - 1){
+                    if(j == (wynik.size() - 1)){
                         wynik.add(wiadomoscResult);
                         break;
                     }
@@ -59,11 +60,14 @@ public class WiadomosciController {
     }
 
     private List<Wiadomosci> insertBefore(List<Wiadomosci> result, Wiadomosci insert, int index){
-        for(; index < result.size(); index++){
-            Wiadomosci tmp = result.get(index);
-            result.add(index, insert);
+        int size = result.size();
+        Wiadomosci tmp;
+        for(; index < size; index++){
+            tmp = result.get(index);
+            result.set(index, insert);
             insert = tmp;
         }
+        result.add(insert);
         return result;
     }
 

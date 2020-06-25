@@ -27,6 +27,8 @@ public class ZdjeciaController {
     private ZdjeciaRepository zdjeciaRepository;
     @Autowired
     private UzytkownikRepository uzytkownikRepository;
+    @Autowired
+    private ZdjeciaRepositoryDelete zdjeciaRepositoryDelete;
 
     @GetMapping
     private ArrayList<Zdjecia> getAllZdjecia(){
@@ -43,6 +45,27 @@ public class ZdjeciaController {
 //        });
 //        return zdjeciaListToSend;
         return (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
+    }
+
+    @GetMapping("/profil/uzytkownik/{id}")
+    private Zdjecia getZdjecieProfilowe(@PathVariable Long id){
+//        ArrayList<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
+//        Optional<Zdjecia> result = zdjeciaRepository.findAll().stream()
+//                .filter(zdjecia -> (zdjecia.getUzytkownik().getId().intValue() == id.intValue() && zdjecia.getStatus() == TypeOfImage.PROFILE)).findFirst();
+//        if(result.isEmpty()){
+//            return null;
+//        }
+//        return result.get();
+        Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
+        if(!user.isEmpty()){
+            return zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+        }
+        return null;
+    }
+
+    @GetMapping("/profil")
+    private List<Zdjecia> getAllZdjecieProfilowe(){
+        return (List<Zdjecia>) zdjeciaRepository.findByStatus(TypeOfImage.PROFILE);
     }
 
     @GetMapping("/uzytkownik/{id}")
@@ -121,13 +144,23 @@ public class ZdjeciaController {
         return zdjecia;
     }
 
+//    @DeleteMapping("/uzytkownik/{id}")
+//    private boolean deleteZdjecia(@PathVariable("id") Long id){
+//        boolean result = false;
+//        Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
+//        if(!user.isEmpty()){
+//            result = zdjeciaRepository.deleteAllByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+//        }
+//        return result;
+//    }
+
     @DeleteMapping("/uzytkownik/{id}")
     private boolean deleteZdjecia(@PathVariable("id") Long id){
         boolean result = false;
         Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
-        if(!user.isEmpty()){
-            result = zdjeciaRepository.deleteAllByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
-        }
+        Zdjecia zdjecia = zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+        zdjeciaRepositoryDelete.delete(zdjecia);
+        result = true;
         return result;
     }
 }

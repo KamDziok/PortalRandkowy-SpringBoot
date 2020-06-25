@@ -3,6 +3,8 @@ package pl.AILab1PPS.PortalRandkowy.uzytkownik;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.AILab1PPS.PortalRandkowy.zwiazek.ProposedRelationship;
+import pl.AILab1PPS.PortalRandkowy.zwiazek.Zwiazek;
+import pl.AILab1PPS.PortalRandkowy.zwiazek.ZwiazekRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,8 @@ public class UzytkownikController {
 
     @Autowired
     private UzytkownikRepository uzytkownikRepository;
+    @Autowired
+    private ZwiazekRepository zwiazekRepository;
 
     @GetMapping
     private ArrayList<Uzytkownik> getAllUzytkownik(){
@@ -54,10 +58,19 @@ public class UzytkownikController {
             if(user.getId().intValue() != userCurrent.getId().intValue()){
                 if(user.isClient()) {
                     if (userCurrent.isDifferentSex(user)) {
-                        if (!user.isInRelationship(userCurrent)) {
+                        Zwiazek result = null;
+                        result = zwiazekRepository.findByUzytkownikAAndUzytkownikB(userCurrent, user);
+                        if(result == null){
+                            result = zwiazekRepository.findByUzytkownikAAndUzytkownikB(user, userCurrent);
+                        }
+                        if(result == null){
                             proposedRelationshipList.add(new ProposedRelationship(user.basicUzytkownik(),
                                     user.countPointsForPodKategorie(userCurrent)));
                         }
+//                        if (!user.isInRelationship(userCurrent)) {
+//                            proposedRelationshipList.add(new ProposedRelationship(user.basicUzytkownik(),
+//                                    user.countPointsForPodKategorie(userCurrent)));
+//                        }
                     }
                 }
             }
