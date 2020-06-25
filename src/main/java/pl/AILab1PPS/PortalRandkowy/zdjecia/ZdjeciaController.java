@@ -58,9 +58,14 @@ public class ZdjeciaController {
 //        return result.get();
         Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
         if(!user.isEmpty()){
-            return zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+            return zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);w
         }
         return null;
+    }
+
+    @GetMapping("/profil")
+    private List<Zdjecia> getAllZdjecieProfilowe(){
+        return (List<Zdjecia>) zdjeciaRepository.findByStatus(TypeOfImage.PROFILE);
     }
 
     @GetMapping("/uzytkownik/{id}")
