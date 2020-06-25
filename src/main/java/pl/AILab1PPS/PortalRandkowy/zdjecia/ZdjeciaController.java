@@ -49,13 +49,18 @@ public class ZdjeciaController {
 
     @GetMapping("/profil/uzytkownik/{id}")
     private Zdjecia getZdjecieProfilowe(@PathVariable Long id){
-        ArrayList<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
-        Optional<Zdjecia> result = zdjeciaRepository.findAll().stream()
-                .filter(zdjecia -> (zdjecia.getUzytkownik().getId().intValue() == id.intValue() && zdjecia.getStatus() == TypeOfImage.PROFILE)).findFirst();
-        if(result.isEmpty()){
-            return null;
+//        ArrayList<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
+//        Optional<Zdjecia> result = zdjeciaRepository.findAll().stream()
+//                .filter(zdjecia -> (zdjecia.getUzytkownik().getId().intValue() == id.intValue() && zdjecia.getStatus() == TypeOfImage.PROFILE)).findFirst();
+//        if(result.isEmpty()){
+//            return null;
+//        }
+//        return result.get();
+        Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
+        if(!user.isEmpty()){
+            return zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
         }
-        return result.get();
+        return null;
     }
 
     @GetMapping("/uzytkownik/{id}")
