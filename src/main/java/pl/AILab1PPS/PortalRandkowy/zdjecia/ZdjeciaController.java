@@ -52,6 +52,9 @@ public class ZdjeciaController {
         ArrayList<Zdjecia> zdjeciaList = (ArrayList<Zdjecia>) zdjeciaRepository.findAll();
         Optional<Zdjecia> result = zdjeciaRepository.findAll().stream()
                 .filter(zdjecia -> (zdjecia.getUzytkownik().getId().intValue() == id.intValue() && zdjecia.getStatus() == TypeOfImage.PROFILE)).findFirst();
+        if(result.isEmpty()){
+            return null;
+        }
         return result.get();
     }
 
