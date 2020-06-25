@@ -61,7 +61,12 @@ INSERT INTO `pod_kategorie` (`id`, `nazwa`, `kategorie_id`) VALUES
 (21, 'Nauki społeczne', 5),
 (22, 'Technologie', 5),
 (23, 'Nauki medyczne', 5),
-(24, 'Nauki humanistyczne', 5);
+(24, 'Nauki humanistyczne', 5),
+(25, 'Inne w Gotowaniu', 1),
+(26, 'Inne w Sporcie', 2),
+(27, 'Inne w Life style', 3),
+(28, 'Inne w Sztuka', 4),
+(29, 'Inne w Nauce', 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
