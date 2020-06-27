@@ -157,10 +157,12 @@ public class ZdjeciaController {
     @DeleteMapping("/uzytkownik/{id}")
     private boolean deleteZdjecia(@PathVariable("id") Long id){
         boolean result = false;
-        Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
-        Zdjecia zdjecia = zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
-        zdjeciaRepositoryDelete.delete(zdjecia);
-        result = true;
+        try {
+            Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
+            Zdjecia zdjecia = zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
+            zdjeciaRepositoryDelete.delete(zdjecia);
+            result = true;
+        }catch (Exception e){}
         return result;
     }
 }
