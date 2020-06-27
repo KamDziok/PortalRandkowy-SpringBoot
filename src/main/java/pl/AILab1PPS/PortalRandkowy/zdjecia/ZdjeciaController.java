@@ -160,7 +160,9 @@ public class ZdjeciaController {
         try {
             Optional<Uzytkownik> user = uzytkownikRepository.findById(id);
             Zdjecia zdjecia = zdjeciaRepository.findByUzytkownikAndStatus(user.get(), TypeOfImage.PROFILE);
-            zdjeciaRepositoryDelete.delete(zdjecia);
+            if (zdjecia != null) {
+                zdjeciaRepositoryDelete.delete(zdjecia);
+            }
             result = true;
         }catch (Exception e){}
         return result;
