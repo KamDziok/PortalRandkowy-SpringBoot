@@ -72,12 +72,12 @@ INSERT INTO `pod_kategorie` (`id`, `nazwa`, `kategorie_id`) VALUES
 --
 
 INSERT INTO `uzytkownicy` (`id`, `haslo`, `mail`, `miejscowosc`, `nick`, `opis`, `plec`, `uprawnienia`) VALUES
-(1, 'adam', 'adam@adam.pl', 'Adamów', 'adam', 'Jestem kucharzem, chętnie poznam osobę, która podziela moje pasje.', b'1', 0),
-(2, 'ada', 'ada@ada.pl', 'Adamów', 'ada', 'Studiuje filologię rosyjską, lubię podróżować i odkrywać nowe rzeczy.', b'0', 0),
-(3, 'renatka', 'renatka@renatka.pl', 'Rzeszów', 'renatka', 'Zaproś mnie do znajomych, a wszystkiego się dowiesz :)', b'0', 0),
-(4, 'rudolf', 'rudolf@rudolf.pl', 'Kołobrzeg', 'rudolf', 'Cześć, jestem rudolf, ale wcale nie mam czerwonego nosa, napisz do mnie, a może zaiskrzy.', b'1', 0),
-(5, 'Aneta', 'aneta@anetka.pl', 'Aleksandrów pomorski', 'aneta', 'Jestem skryta, lubię sporty motorowe i szybkie samochody.', b'0', 0),
-(6, 'admin', 'admin@admin.pl', 'Leżajsk', 'admin', 'Administrator portalu', b'1', 1),
+(1, 'adam', 'adam@adam.pl', 'adamów', 'adam', 'Jestem kucharzem, chętnie poznam osobę, która podziela moje pasje.', b'1', 0),
+(2, 'ada', 'ada@ada.pl', 'adamów', 'ada', 'Studiuje filologię rosyjską, lubię podróżować i odkrywać nowe rzeczy.', b'0', 0),
+(3, 'renatka', 'renatka@renatka.pl', 'rzeszów', 'renatka', 'Zaproś mnie do znajomych, a wszystkiego się dowiesz :)', b'0', 0),
+(4, 'rudolf', 'rudolf@rudolf.pl', 'kołobrzeg', 'rudolf', 'Cześć, jestem rudolf, ale wcale nie mam czerwonego nosa, napisz do mnie, a może zaiskrzy.', b'1', 0),
+(5, 'Aneta', 'aneta@anetka.pl', 'aleksandrów pomorski', 'aneta', 'Jestem skryta, lubię sporty motorowe i szybkie samochody.', b'0', 0),
+(6, 'admin', 'admin@admin.pl', 'leżajsk', 'admin', 'Administrator portalu', b'1', 1),
 (7, 'kamil', 'Kamil@kamil.pl', 'wrocław', 'Kamil', 'Jestem piękny, bogaty i mam własny helikopter.', b'1', 0),
 (8, 'łukasz', 'Łukasz@Łukasz.pl', 'kalalalów', 'Łukasz', 'W moim wniętrzu drzemie dusza artysty.', b'1', 0),
 (9, 'rodzinek', 'rodzinek@ooo.pl', 'pacanów', 'Rodzineczek', 'Mogę zostać Twoim rodzyneczkiem, napisz do mnie!', b'0', 0),
